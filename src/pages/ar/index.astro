@@ -1,14 +1,970 @@
 ---
-import PageWrapper from '@/pages/index.astro'
-import { getRelativeLocaleUrl } from 'astro:i18n'
+import PageWrapper from '@/pages/index.astro';
+import { ModeToggle } from '@/components/ui/ModeToggle';
+import { LocaleToggle } from '@/components/ui/LocaleToggle';
+import { ArrowLeft } from 'lucide-react';
 
+const testimonials = [
+  {
+    name: 'Sarah Jenkins',
+    role: 'CTO, FinTech Next',
+    content:
+      'Sure completely transformed our backend architecture. The new API infrastructure they designed handles 10x our previous traffic with zero latency spikes or downtime.',
+    rating: 5,
+    avatar: 'S',
+  },
+  {
+    name: 'Omar Al-Fayed',
+    role: 'Founder, RetailFlow',
+    content:
+      'The level of engineering quality and attention to detail during our mobile app rebuild was staggering. They don’t just write code; they build scalable digital businesses.',
+    rating: 5,
+    avatar: 'O',
+  },
+  {
+    name: 'Elena Rodriguez',
+    role: 'VP Product, HealthSync',
+    content:
+      'Their UI/UX team worked seamlessly with the frontend engineers to deliver a pixel-perfect, native-feeling healthcare app in half the anticipated timeline. Truly impressive.',
+    rating: 5,
+    avatar: 'E',
+  },
+];
 
-const englishUrl=getRelativeLocaleUrl('en','/')
+const services = [
+  {
+    title: 'حلول الأعمال',
+    description:
+      'تقدم شور مجموعة من الحلول المالية التقنية لقطاع الأعمال والأفراد عبر مجموعة من منتجات وخدمات المدفوعات الإلكترونية',
+    icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>`,
+  },
+  {
+    title: 'تطوير تطبيقات الموبايل',
+    description:
+      'تطوير تطبيقات الموبايل Native و Cross-platform لضمان تجربة مستخدم مميزة وأداء عالي',
+    icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>`,
+  },
+  {
+    title: 'تطوير الواجهات الخلفية و APIs',
+    description:
+      'تطوير الواجهات الخلفية و APIs لضمان تجربة مستخدم مميزة وأداء عالي',
+    icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg>`,
+  },
+  {
+    title: 'تصميم واجهات المستخدم',
+    description: 'تصميم واجهات المستخدم لضمان تجربة مستخدم مميزة وأداء عالي',
+    icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.965 1.178c.09.544.5 1.002 1.002 1.002h2.5c.501 0 .913-.458 1.003-1.002zM14.502 14.28L4.053 5.46a2.25 2.25 0 01-.137-3.136c.216-.254.495-.444.808-.544a2.25 2.25 0 011.666.195l10.82 10.44m0 0l-1.396 1.488m1.396-1.488L20.44 20.44a2.25 2.25 0 01-3.181 3.182l-8.673-8.673m11.854-3.19l-3.182-3.181m3.182 3.181l1.488-1.396a2.25 2.25 0 000-3.182l-5.657-5.657a2.25 2.25 0 00-3.182 0l-1.396 1.487" /></svg>`,
+  },
+  {
+    title: 'الحوسبة السحابية و DevOps',
+    description:
+      'الحوسبة السحابية و DevOps لضمان تجربة مستخدم مميزة وأداء عالي',
+    icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" /></svg>`,
+  },
+  {
+    title: 'الذكاء الاصطناعي و تعلم الآلة',
+    description:
+      'الذكاء الاصطناعي و تعلم الآلة لضمان تجربة مستخدم مميزة وأداء عالي',
+    icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>`,
+  },
+];
 ---
 
+<PageWrapper content={{ title: 'شور للحلول الرقمية' }} lang="ar" dir="rtl">
+  <header
+    class="flex justify-between items-center py-2 sticky top-0 bg-background/5 backdrop-blur-lg z-50"
+  >
+    <div class="shrink-0">
+      <a
+        href="/"
+        class="block hover:scale-105 transition-transform duration-300"
+      >
+        <img
+          src="/logo.svg"
+          alt="logo"
+          class="w-24 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+        />
+      </a>
+    </div>
 
-<PageWrapper content={{title:"Sure landing"}}>
-    <a href={englishUrl}>english</a>
+    <div class="flex items-center justify-between w-[70%] xl:w-2/3">
+      <div
+        class="flex items-center gap-2 p-1.5 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md shadow-sm dark:shadow-md transition-all hover:bg-slate-300/70 dark:hover:bg-white/10"
+      >
+        <ModeToggle client:only />
+        <LocaleToggle client:only />
+      </div>
+
+      <nav
+        class="bg-slate-800/90 dark:bg-[#0a0f1d]/80 border border-slate-700/50 dark:border-white/10 text-white dark:text-gray-300 flex items-center gap-8 rounded-full px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+      >
+        <a
+          class="text-sm font-medium hover:text-primary cursor-pointer transition-colors duration-300 relative group"
+        >
+          الرئيسية
+          <span
+            class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-primary -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full"
+          ></span>
+        </a>
+        <a
+          class="text-sm font-medium hover:text-primary cursor-pointer transition-colors duration-300 relative group"
+        >
+          من نحن
+          <span
+            class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-primary -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full"
+          ></span>
+        </a>
+        <a
+          class="text-sm font-medium hover:text-primary cursor-pointer transition-colors duration-300 relative group"
+        >
+          خدماتنا
+          <span
+            class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-primary -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full"
+          ></span>
+        </a>
+        <a
+          class="text-sm font-medium hover:text-primary cursor-pointer transition-colors duration-300 relative group"
+        >
+          العملاء
+          <span
+            class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-primary -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full"
+          ></span>
+        </a>
+        <a
+          class="text-sm font-medium hover:text-primary cursor-pointer transition-colors duration-300 relative group"
+        >
+          تواصل معنا
+          <span
+            class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-primary -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full"
+          ></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+  <section class="w-full relative pb-20 overflow-hidden">
+    <div
+      class="w-full max-w-[1440px] mx-auto min-h-[700px] md:min-h-[85vh] bg-[#050814]/80 backdrop-blur-3xl rounded-[2rem] relative overflow-hidden border border-white/5 shadow-2xl flex flex-col justify-center"
+    >
+      <div
+        class="absolute -top-1/2 -right-1/4 w-[80%] h-[80%] bg-primary/20 blur-[140px] rounded-full pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute -bottom-1/2 -left-1/4 w-[80%] h-[80%] bg-primary/10 blur-[130px] rounded-full pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="absolute inset-x-0 bottom-0 h-[60%] z-0 flex justify-center pointer-events-none opacity-60"
+      >
+        <div
+          class="w-[1.5px] bg-linear-to-b from-transparent to-primary/20 h-full relative mx-[6%]"
+        >
+          <span
+            class="absolute rounded-full block w-full h-32 bg-linear-to-b from-transparent to-primary bottom-32 opacity-80 blur-[2px] animate-pulse"
+          ></span>
+        </div>
+        <div
+          class="w-[1.5px] bg-linear-to-b from-transparent to-primary/20 h-[80%] relative mx-[4%]"
+        >
+          <span
+            class="absolute rounded-full block w-full h-40 bg-linear-to-b from-transparent to-primary/80 bottom-10 opacity-70 blur-[2px]"
+          ></span>
+        </div>
+        <div
+          class="w-px bg-linear-to-b from-transparent to-primary/10 h-[90%] relative mx-[7%]"
+        >
+          <span
+            class="absolute rounded-full block w-full h-24 bg-linear-to-b from-transparent to-primary bottom-1/4 opacity-90 blur-[2px]"
+          ></span>
+        </div>
+      </div>
+
+      <div
+        class="absolute inset-0 z-0 pointer-events-none opacity-10 animate-ping mix-blend-screen"
+        style="background-image: 
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8) 100%, transparent),
+                radial-gradient(2px 2px at 40% 50%, rgba(255,255,255,0.3) 100%, transparent),
+                radial-gradient(1.5px 1.5px at 80% 30%, rgba(255,255,255,0.6) 100%, transparent),
+                radial-gradient(2.5px 2.5px at 90% 80%, rgba(255,255,255,0.4) 100%, transparent),
+                radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.9) 100%, transparent),
+                radial-gradient(2px 2px at 60% 10%, rgba(255,255,255,0.5) 100%, transparent),
+                radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.7) 100%, transparent),
+                radial-gradient(1.5px 1.5px at 20% 80%, rgba(255,255,255,0.6) 100%, transparent); 
+             background-size: 140px 140px; background-repeat: repeat;"
+      >
+      </div>
+      <div
+        class="absolute inset-0 z-0 pointer-events-none opacity-5 mix-blend-screen"
+        style="background-image: 
+                radial-gradient(1.5px 1.5px at 15% 15%, rgba(255,255,255,0.5) 100%, transparent),
+                radial-gradient(1px 1px at 85% 85%, rgba(255,255,255,0.7) 100%, transparent),
+                radial-gradient(2px 2px at 50% 25%, rgba(255,255,255,0.4) 100%, transparent); 
+             background-size: 200px 200px; background-repeat: repeat;"
+      >
+      </div>
+
+      <div
+        class="relative z-10 flex flex-col items-center flex-1 w-full max-w-4xl mx-auto px-6 text-center justify-center"
+      >
+        <div
+          class="flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-medium text-gray-300 transition-colors border rounded-full bg-white/5 border-white/10 hover:bg-white/10 backdrop-blur-md cursor-pointer"
+        >
+          <div
+            class="w-4 h-4 bg-primary text-black rounded-full flex items-center justify-center text-[10px] font-bold"
+          >
+            S
+          </div>
+          مرحبا بكم في شركة شور للبرمجيات!
+          <ArrowLeft className="size-4" />
+        </div>
+
+        <h1
+          class="text-5xl md:text-6xl lg:text-[5rem] leading-[1.1] font-bold -tracking-tight text-white mb-6"
+        >
+          رواد الحلول والتقنيات الرقمية في <span
+            class="text-white/60 text-shadow-sm">المملكة</span
+          >
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl font-light">
+          تقدم شور مجموعة من الحلول المالية التقنية لقطاع الأعمال والأفراد عبر
+          مجموعة من منتجات وخدمات المدفوعات الإلكترونية
+        </p>
+
+        <div class="flex items-center gap-4">
+          <button
+            class="px-6 py-3 text-sm font-medium text-white transition-all duration-300 border rounded-full bg-black/40 border-white/10 hover:bg-white/10 hover:scale-105 backdrop-blur-md flex items-center gap-2"
+          >
+            ابدأ مشروعك
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+            >
+          </button>
+          <button
+            class="px-7 py-3 text-sm font-medium text-black transition-all duration-300 bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)] rounded-full hover:bg-gray-100 hover:scale-105 flex items-center gap-2"
+          >
+            خدماتنا
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-10 left-10 flex items-center gap-3 md:flex"
+      >
+        <div
+          class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:-translate-y-1 transition-transform"
+        >
+          <!-- Clock Icon -->
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
+          >
+        </div>
+        <span id="saudi-time" class="text-xs text-gray-400 tracking-wide"
+          >Loading time...</span
+        >
+      </div>
+
+      <div
+        class="absolute bottom-10 right-10 flex flex-col items-end gap-3 md:flex"
+      >
+        <span
+          id="engineering-caption"
+          class="text-sm text-primary font-medium tracking-wider transition-opacity duration-300"
+          >حلول الاعمال</span
+        >
+        <div id="caption-indicators" class="flex items-center gap-2">
+          <div
+            class="w-5 h-1.5 bg-white rounded-full transition-colors cursor-pointer"
+          >
+          </div>
+          <div
+            class="w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40"
+          >
+          </div>
+          <div
+            class="w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40"
+          >
+          </div>
+          <div
+            class="w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40"
+          >
+          </div>
+          <div
+            class="w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40"
+          >
+          </div>
+          <div
+            class="w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40"
+          >
+          </div>
+          <div
+            class="w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40"
+          >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer sm:opacity-50 hover:opacity-100 transition-opacity z-10"
+        onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})"
+      >
+        <span
+          class="text-[9px] text-white/50 font-semibold tracking-[0.2em] uppercase"
+          >Scroll</span
+        >
+        <div
+          class="w-5 h-8 border border-white/20 rounded-full flex justify-center p-1 shadow-[0_0_10px_rgba(255,255,255,0.05)] bg-black/20 backdrop-blur-md"
+        >
+          <div class="w-1 h-2 bg-primary rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full mt-16 px-6 relative z-10 flex flex-col items-center overflow-hidden"
+    >
+      <p
+        class="text-[11px] font-semibold tracking-[0.3em] text-black/40 dark:text-white/40 uppercase mb-10 text-center drop-shadow-sm"
+      >
+        شركاؤنا في النجاح
+      </p>
+
+      <div
+        class="w-full max-w-[1440px] overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+      >
+        <div
+          class="flex items-center w-max gap-16 md:gap-24 animate-logo-scroll opacity-40 hover:opacity-80 transition-opacity duration-500 grayscale hover:grayscale-0"
+        >
+          <div
+            class="flex items-center gap-2 text-xl font-bold text-black dark:text-white"
+          >
+            <div
+              class="w-0 h-0 border-l-10 border-l-transparent border-r-10 border-r-transparent border-b-18 border-b-white"
+            >
+            </div> Vercel
+          </div>
+          <div
+            class="text-2xl font-bold tracking-tighter text-black dark:text-white"
+          >
+            loom
+          </div>
+          <div
+            class="flex items-center gap-1.5 text-xl font-semibold text-black dark:text-white"
+          >
+            <span
+              class="bg-white text-black px-1.5 rounded text-sm italic font-bold leading-tight"
+              >$</span
+            > Cash App
+          </div>
+          <div
+            class="flex items-center gap-1 text-2xl font-bold tracking-tighter text-black dark:text-white"
+          >
+            <svg
+              class="w-6 h-6 mr-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              ><circle cx="12" cy="12" r="10"></circle><circle
+                cx="12"
+                cy="12"
+                r="5"></circle></svg
+            >
+            Loops
+          </div>
+          <div
+            class="text-2xl font-bold tracking-tight text-black dark:text-white"
+          >
+            _zapier
+          </div>
+          <div
+            class="flex items-center gap-1 text-2xl font-bold tracking-tighter text-black dark:text-white"
+          >
+            ramp <svg
+              class="w-5 h-5 mt-1"
+              fill="currentColor"
+              viewBox="0 0 24 24"><path d="M13 3L4 14h7v7l9-11h-7z"></path></svg
+            >
+          </div>
+          <div
+            class="flex items-center gap-2 text-xl font-bold text-black dark:text-white"
+          >
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+              ><path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+              ></path></svg
+            > Raycast
+          </div>
+
+          <div
+            class="flex items-center gap-2 text-xl font-bold text-black dark:text-white"
+          >
+            <div
+              class="w-0 h-0 border-l-10 border-l-transparent border-r-10 border-r-transparent border-b-18 border-b-white"
+            >
+            </div> Vercel
+          </div>
+          <div
+            class="text-2xl font-bold tracking-tighter text-black dark:text-white"
+          >
+            loom
+          </div>
+          <div
+            class="flex items-center gap-1.5 text-xl font-semibold text-black dark:text-white"
+          >
+            <span
+              class="bg-white text-black px-1.5 rounded text-sm italic font-bold leading-tight"
+              >$</span
+            > Cash App
+          </div>
+          <div
+            class="flex items-center gap-1 text-2xl font-bold tracking-tighter text-black dark:text-white"
+          >
+            <svg
+              class="w-6 h-6 mr-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              ><circle cx="12" cy="12" r="10"></circle><circle
+                cx="12"
+                cy="12"
+                r="5"></circle></svg
+            >
+            Loops
+          </div>
+          <div
+            class="text-2xl font-bold tracking-tight text-black dark:text-white"
+          >
+            _zapier
+          </div>
+          <div
+            class="flex items-center gap-1 text-2xl font-bold tracking-tighter text-black dark:text-white"
+          >
+            ramp <svg
+              class="w-5 h-5 mt-1"
+              fill="currentColor"
+              viewBox="0 0 24 24"><path d="M13 3L4 14h7v7l9-11h-7z"></path></svg
+            >
+          </div>
+          <div
+            class="flex items-center gap-2 text-xl font-bold text-black dark:text-white"
+          >
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+              ><path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+              ></path></svg
+            > Raycast
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="services"
+    class="w-full relative px-6 py-24 md:py-32 bg-transparent dark:bg-transparent z-10"
+  >
+    <div class="max-w-[1440px] mx-auto">
+      <div
+        class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-20 relative"
+      >
+        <div
+          class="absolute -top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none"
+        >
+        </div>
+
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
+        >
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span
+            class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
+            >خدماتنا</span
+          >
+        </div>
+
+        <h2
+          class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6"
+        >
+          حلول رقمية <span
+            class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400"
+            >متميزة</span
+          >
+        </h2>
+
+        <p class="text-lg md:text-xl text-slate-600 dark:text-gray-400">
+          حلول شاملة مصممة للتوسع، والارتقاء بعلامتك التجارية، والسيطرة على
+          المشهد الرقمي.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative"
+      >
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[80%] bg-blue-900/10 blur-[150px] rounded-full pointer-events-none z-[-1]"
+        >
+        </div>
+
+        {
+          services.map((service, index) => (
+            <div class="group relative bg-[#ffffff]/60 dark:bg-[#0a0f1d]/60 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-primary/40 dark:hover:border-primary/40 overflow-hidden flex flex-col h-full">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-[100px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div class="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500 shadow-sm">
+                <Fragment set:html={service.icon} />
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">
+                {service.title}
+              </h3>
+              <p class="text-slate-600 dark:text-gray-400 leading-relaxed mb-8 grow">
+                {service.description}
+              </p>
+
+              <div class="flex items-center gap-2 text-sm font-semibold text-primary mt-auto">
+                <span>اعرف المزيد</span>
+                <ArrowLeft className="size-4" />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="clients"
+    class="w-full relative px-6 py-24 md:py-32 bg-transparent dark:bg-transparent z-10 overflow-hidden"
+  >
+    <div class="max-w-[1440px] mx-auto relative">
+      <div
+        class="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-10 w-72 h-72 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none z-[-1]"
+      >
+      </div>
+
+      <div
+        class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-20"
+      >
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
+        >
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span
+            class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
+            >Our Clients</span
+          >
+        </div>
+
+        <h2
+          class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6"
+        >
+          Trusted by <span
+            class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400"
+            >Visionaries</span
+          >
+        </h2>
+
+        <p class="text-lg md:text-xl text-slate-600 dark:text-gray-400">
+          Hear from the founders and tech leaders who have scaled their
+          operations using our software engineering solutions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {
+          testimonials.map(t => (
+            <div class="group relative bg-[#ffffff]/60 dark:bg-[#0a0f1d]/60 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-primary/40 dark:hover:border-primary/40 flex flex-col justify-between">
+              <div class="flex items-center gap-1 mb-8">
+                {Array.from({ length: t.rating }).map(() => (
+                  <svg
+                    class="w-5 h-5 text-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+
+              <p class="text-slate-700 dark:text-gray-300 text-lg leading-relaxed mb-10 italic relative z-10">
+                "{t.content}"
+              </p>
+
+              <div class="flex items-center gap-4 mt-auto relative z-10">
+                <div class="w-12 h-12 rounded-full bg-linear-to-br from-primary to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(111,0,255,0.3)] relative group-hover:scale-105 transition-transform">
+                  <span class="relative z-10">{t.avatar}</span>
+                  <div class="absolute inset-0 bg-primary rounded-full blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-500" />
+                </div>
+
+                <div>
+                  <h4 class="text-slate-900 dark:text-white font-bold text-base transition-colors group-hover:text-primary">
+                    {t.name}
+                  </h4>
+                  <p class="text-slate-500 dark:text-gray-400 text-sm">
+                    {t.role}
+                  </p>
+                </div>
+              </div>
+
+              <svg
+                class="absolute top-6 right-6 w-24 h-24 text-slate-200/50 dark:text-white/5 opacity-50 pointer-events-none transform -scale-x-100"
+                fill="currentColor"
+                viewBox="0 0 32 32"
+              >
+                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+              </svg>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="contact"
+    class="w-full relative px-6 py-24 md:py-32 overflow-hidden z-10"
+  >
+    <div class="max-w-[1440px] mx-auto relative">
+      <div
+        class="absolute top-0 right-1/4 w-72 h-72 bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"
+      >
+      </div>
+
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
+      >
+        <div>
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
+          >
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span
+              class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
+              >تواصل معنا</span
+            >
+          </div>
+
+          <h2
+            class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6"
+          >
+            لنبدأ ببناء شيء <span
+              class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400"
+              >استثنائي</span
+            >
+          </h2>
+
+          <p class="text-lg text-slate-600 dark:text-gray-400 mb-10">
+            هل أنت مستعد لتحويل استراتيجيتك الرقمية؟ تواصل مع فريق المهندسين
+            والمصممين لدينا لمناقشة مشروعك الكبير القادم.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center text-primary"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <p class="text-sm text-slate-500 dark:text-gray-400">راسلنا</p>
+                <p
+                  class="text-base font-semibold text-slate-900 dark:text-white"
+                >
+                  [EMAIL_ADDRESS]
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center text-primary"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                  ></path></svg
+                >
+              </div>
+              <div>
+                <p class="text-sm text-slate-500 dark:text-gray-400">زورنا</p>
+                <p
+                  class="text-base font-semibold text-slate-900 dark:text-white"
+                >
+                  الرياض، المملكة العربية السعودية
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-[#ffffff]/60 dark:bg-[#0a0f1d]/60 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-3xl p-8 shadow-xl relative"
+        >
+          <form class="space-y-6" onsubmit="event.preventDefault();">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium text-slate-700 dark:text-gray-300"
+                  >الاسم الأول</label
+                >
+                <input
+                  type="text"
+                  class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  placeholder="John"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium text-slate-700 dark:text-gray-300"
+                  >الاسم الأخير</label
+                >
+                <input
+                  type="text"
+                  class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium text-slate-700 dark:text-gray-300"
+                >البريد الإلكتروني</label
+              >
+              <input
+                type="email"
+                class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                placeholder="john@company.com"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium text-slate-700 dark:text-gray-300"
+                >الرسالة</label
+              >
+              <textarea
+                rows="4"
+                class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+                placeholder="Tell us about your project..."></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl px-6 py-4 transition-colors"
+            >
+              إرسال
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer
+    class="w-full border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#02040a] relative z-10 pt-16 pb-8 px-6"
+  >
+    <div class="max-w-[1440px] mx-auto">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16"
+      >
+        <div>
+          <a href="/" class="block mb-4 hover:scale-105 transition-transform">
+            <img
+              src="/logo.svg"
+              alt="logo"
+              class="w-24 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+            />
+          </a>
+          <p class="text-slate-500 dark:text-gray-400 max-w-sm">
+            حلول هندسة البرمجيات والتصميم المتميزة التي تبني البنية التحتية
+            الرقمية للغد.
+          </p>
+        </div>
+
+        <div class="flex gap-12">
+          <div class="flex flex-col gap-3">
+            <h4 class="font-bold text-slate-900 dark:text-white mb-2">
+              الشركة
+            </h4>
+            <a
+              href="#"
+              class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+              >من نحن</a
+            >
+            <a
+              href="#"
+              class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+              >خدماتنا</a
+            >
+            <a
+              href="#"
+              class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+              >عملائنا</a
+            >
+          </div>
+          <div class="flex flex-col gap-3">
+            <h4 class="font-bold text-slate-900 dark:text-white mb-2">
+              قانوني
+            </h4>
+            <a
+              href="#"
+              class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+              >سياسة الخصوصية</a
+            >
+            <a
+              href="#"
+              class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+              >شروط الخدمة</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <p class="text-slate-500 dark:text-gray-400 text-sm">
+          &copy; {new Date().getFullYear()} الخبرة للبرمجيات. جميع الحقوق محفوظة.
+        </p>
+        <div class="flex gap-4">
+          <a
+            href="#"
+            class="text-slate-400 hover:text-primary transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+              ><path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+              ></path></svg
+            >
+          </a>
+          <a
+            href="#"
+            class="text-slate-400 hover:text-primary transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+              ><path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              ></path></svg
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </PageWrapper>
 
+<script>
+  function initSaudiTime() {
+    const timeEl = document.getElementById('saudi-time');
+    if (!timeEl) return;
 
+    function updateTime() {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('ar-SA', {
+        timeZone: 'Asia/Riyadh',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      });
+      timeEl!.textContent = 'وقت السعودية • ' + formatter.format(now);
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+  }
+
+  function initCaptions() {
+    const captions = [
+      'حلول الاعمال',
+      'المنتجات السحابية',
+      'الذكاء الاصطناعي ودمج البيانات',
+      'حلول البنية التحتية والامان',
+      'حلول الخدمات المدارة',
+      'منتاجات رقمية مبتكرة',
+    ];
+    let currentIndex = 0;
+    const captionEl = document.getElementById('engineering-caption');
+    const dotsContainer = document.getElementById('caption-indicators');
+    if (!captionEl || !dotsContainer) return;
+    const dots = dotsContainer.children;
+
+    setInterval(() => {
+      captionEl.style.opacity = '0';
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % captions.length;
+        captionEl.textContent = captions[currentIndex];
+        captionEl.style.opacity = '1';
+
+        for (let i = 0; i < dots.length; i++) {
+          if (i === currentIndex) {
+            dots[i].className =
+              'w-5 h-1.5 bg-white rounded-full transition-colors cursor-pointer';
+          } else {
+            dots[i].className =
+              'w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40';
+          }
+        }
+      }, 300);
+    }, 2000);
+  }
+
+  function initAll() {
+    initSaudiTime();
+    initCaptions();
+  }
+
+  document.addEventListener('astro:page-load', initAll);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+</script>

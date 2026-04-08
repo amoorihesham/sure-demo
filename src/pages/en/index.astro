@@ -1,11 +1,18 @@
 ---
-import PageWrapper from '@/pages/index.astro'
-import { getRelativeLocaleUrl } from 'astro:i18n'
-
-
-const arabicUrl=getRelativeLocaleUrl('ar','/')
+import PageWrapper from '@/pages/index.astro';
+import Header from '@/sections/header.astro';
+import Hero from '@/sections/hero.astro';
+import Services from '@/sections/services.astro';
+import Clients from '@/sections/clients.astro';
+import Contact from '@/sections/contact.astro';
+import Footer from '@/sections/footer.astro';
 ---
 
-<PageWrapper>
-    <a href={arabicUrl}>arabic</a>
+<PageWrapper content={{ title: 'Sure Solutions' }}>
+  <Header />
+  <Hero />
+  <Services />
+  <Clients />
+  <Contact />
+  <Footer />
 </PageWrapper>
