@@ -1,0 +1,11 @@
+---
+import PageWrapper from '@/pages/index.astro'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+
+const arabicUrl=getRelativeLocaleUrl('ar','/')
+---
+
+<PageWrapper>
+    <a href={arabicUrl}>arabic</a>
+</PageWrapper>

@@ -1,0 +1,14 @@
+---
+import PageWrapper from '@/pages/index.astro'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+
+const englishUrl=getRelativeLocaleUrl('en','/')
+---
+
+
+<PageWrapper content={{title:"Sure landing"}}>
+    <a href={englishUrl}>english</a>
+</PageWrapper>
+
+
