@@ -1,5 +1,5 @@
 ---
-import PageWrapper from '@/pages/index.astro';
+import PageWrapper from '@/layouts/Layout.astro';
 import { ModeToggle } from '@/components/ui/ModeToggle';
 import { LocaleToggle } from '@/components/ui/LocaleToggle';
 import { ArrowLeft } from 'lucide-react';
@@ -70,7 +70,7 @@ const services = [
 ];
 ---
 
-<PageWrapper content={{ title: 'شور للحلول الرقمية' }} lang="ar" dir="rtl">
+<PageWrapper lang="ar" dir="rtl" title="شور للحلول الرقمية">
   <header
     class="flex justify-between items-center py-2 sticky top-0 bg-background/5 backdrop-blur-lg z-50"
   >

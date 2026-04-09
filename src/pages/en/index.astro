@@ -1,5 +1,5 @@
 ---
-import PageWrapper from '@/pages/index.astro';
+import PageWrapper from '@/layouts/Layout.astro';
 import Header from '@/sections/header.astro';
 import Hero from '@/sections/hero.astro';
 import Services from '@/sections/services.astro';
@@ -8,7 +8,7 @@ import Contact from '@/sections/contact.astro';
 import Footer from '@/sections/footer.astro';
 ---
 
-<PageWrapper content={{ title: 'Sure Solutions' }}>
+<PageWrapper lang="en" dir="ltr" title="Sure Solutions">
   <Header />
   <Hero />
   <Services />
