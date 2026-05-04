@@ -1,70 +1,113 @@
 ---
+interface Props {
+  lang: 'en' | 'ar';
+}
+const { lang } = Astro.props;
 
+const t = {
+  en: {
+    tagline:
+      'Premium software engineering and design solutions building the digital infrastructure of tomorrow.',
+    company: 'Company',
+    links: {
+      about: 'About Us',
+      services: 'Services',
+      clients: 'Clients',
+    },
+    legal: 'Legal',
+    legalLinks: {
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Service',
+    },
+    copyright: 'Sure Software House. All rights reserved.',
+  },
+  ar: {
+    tagline:
+      'حلول هندسة البرمجيات والتصميم المتميزة التي تبني البنية التحتية الرقمية للغد.',
+    company: 'الشركة',
+    links: {
+      about: 'من نحن',
+      services: 'خدماتنا',
+      clients: 'عملائنا',
+    },
+    legal: 'قانوني',
+    legalLinks: {
+      privacy: 'سياسة الخصوصية',
+      terms: 'شروط الخدمة',
+    },
+    copyright: 'شور للبرمجيات. جميع الحقوق محفوظة.',
+  },
+}[lang];
+
+const year = new Date().getFullYear();
 ---
 
 <footer
-  class="w-full border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#02040a] relative z-10 pt-16 pb-8 px-6"
+  class="w-full border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#02040a] relative z-10 pt-12 md:pt-16 pb-8 px-4 md:px-6"
 >
   <div class="max-w-[1440px] mx-auto">
     <div
-      class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-16"
+      class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12 md:mb-16"
     >
-      <div>
-        <a href="/" class="block mb-4 hover:scale-105 transition-transform">
+      <!-- Brand -->
+      <div class="max-w-sm">
+        <a href="/" class="block mb-4 hover:scale-105 transition-transform w-fit">
           <img
             src="/logo.svg"
             alt="logo"
-            class="w-24 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+            class="w-20 md:w-24 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
           />
         </a>
-        <p class="text-slate-500 dark:text-gray-400 max-w-sm">
-          Premium software engineering and design solutions building the digital
-          infrastructure of tomorrow.
+        <p class="text-sm md:text-base text-slate-500 dark:text-gray-400">
+          {t.tagline}
         </p>
       </div>
 
-      <div class="flex gap-12">
+      <!-- Nav columns -->
+      <div class="flex gap-10 md:gap-12">
         <div class="flex flex-col gap-3">
-          <h4 class="font-bold text-slate-900 dark:text-white mb-2">Company</h4>
+          <h4 class="font-bold text-slate-900 dark:text-white mb-1">{t.company}</h4>
           <a
             href="#"
-            class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
-            >About Us</a
+            class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+            >{t.links.about}</a
           >
           <a
-            href="#"
-            class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
-            >Services</a
+            href="#services"
+            class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+            >{t.links.services}</a
           >
           <a
-            href="#"
-            class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
-            >Clients</a
+            href="#clients"
+            class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+            >{t.links.clients}</a
           >
         </div>
         <div class="flex flex-col gap-3">
-          <h4 class="font-bold text-slate-900 dark:text-white mb-2">Legal</h4>
+          <h4 class="font-bold text-slate-900 dark:text-white mb-1">{t.legal}</h4>
           <a
             href="#"
-            class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
-            >Privacy Policy</a
+            class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+            >{t.legalLinks.privacy}</a
           >
           <a
             href="#"
-            class="text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
-            >Terms of Service</a
+            class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary transition-colors"
+            >{t.legalLinks.terms}</a
           >
         </div>
       </div>
     </div>
 
+    <!-- Bottom bar -->
     <div
-      class="border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+      class="border-t border-slate-200 dark:border-white/5 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
     >
-      <p class="text-slate-500 dark:text-gray-400 text-sm">
-        &copy; {new Date().getFullYear()} Sure Software House. All rights reserved.
+      <p class="text-slate-500 dark:text-gray-400 text-xs md:text-sm text-center md:text-start">
+        &copy; {year} {t.copyright}
       </p>
       <div class="flex gap-4">
+        <!-- Twitter/X -->
         <a href="#" class="text-slate-400 hover:text-primary transition-colors">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
             ><path
@@ -72,6 +115,7 @@
             ></path></svg
           >
         </a>
+        <!-- LinkedIn -->
         <a href="#" class="text-slate-400 hover:text-primary transition-colors">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
             ><path

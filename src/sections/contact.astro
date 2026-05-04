@@ -1,20 +1,66 @@
 ---
+interface Props {
+  lang: 'en' | 'ar';
+}
+const { lang } = Astro.props;
 
+const t = {
+  en: {
+    badge: 'Contact Us',
+    heading: "Let's Build Something",
+    headingAccent: 'Extraordinary',
+    subtitle:
+      'Ready to transform your digital strategy? Get in touch with our team of engineers and designers to discuss your next big project.',
+    emailLabel: 'Email us',
+    email: 'hello@sure.sa',
+    locationLabel: 'Visit us',
+    location: 'Riyadh, Saudi Arabia',
+    firstName: 'First Name',
+    firstNamePlaceholder: 'John',
+    lastName: 'Last Name',
+    lastNamePlaceholder: 'Doe',
+    emailField: 'Work Email',
+    emailPlaceholder: 'john@company.com',
+    message: 'Message',
+    messagePlaceholder: 'Tell us about your project...',
+    submit: 'Send Message',
+  },
+  ar: {
+    badge: 'تواصل معنا',
+    heading: 'لنبدأ ببناء شيء',
+    headingAccent: 'استثنائي',
+    subtitle:
+      'هل أنت مستعد لتحويل استراتيجيتك الرقمية؟ تواصل مع فريق المهندسين والمصممين لدينا لمناقشة مشروعك الكبير القادم.',
+    emailLabel: 'راسلنا',
+    email: 'hello@sure.sa',
+    locationLabel: 'زورنا',
+    location: 'الرياض، المملكة العربية السعودية',
+    firstName: 'الاسم الأول',
+    firstNamePlaceholder: 'محمد',
+    lastName: 'الاسم الأخير',
+    lastNamePlaceholder: 'العمري',
+    emailField: 'البريد الإلكتروني',
+    emailPlaceholder: 'john@company.com',
+    message: 'الرسالة',
+    messagePlaceholder: 'أخبرنا عن مشروعك...',
+    submit: 'إرسال',
+  },
+}[lang];
 ---
 
 <section
   id="contact"
-  class="w-full relative px-6 py-24 md:py-32 overflow-hidden z-10"
+  class="w-full relative px-4 md:px-6 py-20 md:py-32 overflow-hidden z-10"
 >
   <div class="max-w-[1440px] mx-auto relative">
-    <!-- Background Decor -->
+    <!-- Background decor -->
     <div
       class="absolute top-0 right-1/4 w-72 h-72 bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]"
     >
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-      <!-- Text & Contact Info -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-24 items-center">
+      <!-- Text & contact info -->
       <div>
         <div
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
@@ -22,28 +68,28 @@
           <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
           <span
             class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
-            >Contact Us</span
+            >{t.badge}</span
           >
         </div>
 
         <h2
-          class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6"
+          class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 md:mb-6"
         >
-          Let's Build Something <span
-            class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400"
-            >Extraordinary</span
-          >
+          {t.heading}
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400">
+            {t.headingAccent}
+          </span>
         </h2>
 
-        <p class="text-lg text-slate-600 dark:text-gray-400 mb-10">
-          Ready to transform your digital strategy? Get in touch with our team
-          of engineers and designers to discuss your next big project.
+        <p class="text-base md:text-lg text-slate-600 dark:text-gray-400 mb-8 md:mb-10">
+          {t.subtitle}
         </p>
 
-        <div class="space-y-6">
+        <div class="space-y-5 md:space-y-6">
+          <!-- Email -->
           <div class="flex items-center gap-4">
             <div
-              class="w-12 h-12 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center text-primary"
+              class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center text-primary shrink-0"
             >
               <svg
                 class="w-5 h-5"
@@ -59,16 +105,17 @@
               >
             </div>
             <div>
-              <p class="text-sm text-slate-500 dark:text-gray-400">Email us</p>
-              <p class="text-base font-semibold text-slate-900 dark:text-white">
-                hello@sure.sa
+              <p class="text-sm text-slate-500 dark:text-gray-400">{t.emailLabel}</p>
+              <p class="text-sm md:text-base font-semibold text-slate-900 dark:text-white">
+                {t.email}
               </p>
             </div>
           </div>
 
+          <!-- Location -->
           <div class="flex items-center gap-4">
             <div
-              class="w-12 h-12 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center text-primary"
+              class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 flex items-center justify-center text-primary shrink-0"
             >
               <svg
                 class="w-5 h-5"
@@ -87,71 +134,69 @@
               >
             </div>
             <div>
-              <p class="text-sm text-slate-500 dark:text-gray-400">Visit us</p>
-              <p class="text-base font-semibold text-slate-900 dark:text-white">
-                Riyadh, Saudi Arabia
+              <p class="text-sm text-slate-500 dark:text-gray-400">{t.locationLabel}</p>
+              <p class="text-sm md:text-base font-semibold text-slate-900 dark:text-white">
+                {t.location}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Form -->
+      <!-- Contact form -->
       <div
-        class="bg-[#ffffff]/60 dark:bg-[#0a0f1d]/60 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-3xl p-8 shadow-xl relative"
+        class="bg-[#ffffff]/60 dark:bg-[#0a0f1d]/60 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-xl relative"
       >
-        <form class="space-y-6" onsubmit="event.preventDefault();">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form class="space-y-5 md:space-y-6" onsubmit="event.preventDefault();">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             <div class="space-y-2">
-              <label
-                class="text-sm font-medium text-slate-700 dark:text-gray-300"
-                >First Name</label
-              >
+              <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
+                {t.firstName}
+              </label>
               <input
                 type="text"
-                class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                placeholder="John"
+                class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-base"
+                placeholder={t.firstNamePlaceholder}
               />
             </div>
             <div class="space-y-2">
-              <label
-                class="text-sm font-medium text-slate-700 dark:text-gray-300"
-                >Last Name</label
-              >
+              <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
+                {t.lastName}
+              </label>
               <input
                 type="text"
-                class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                placeholder="Doe"
+                class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-base"
+                placeholder={t.lastNamePlaceholder}
               />
             </div>
           </div>
 
           <div class="space-y-2">
-            <label class="text-sm font-medium text-slate-700 dark:text-gray-300"
-              >Work Email</label
-            >
+            <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
+              {t.emailField}
+            </label>
             <input
               type="email"
-              class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-              placeholder="john@company.com"
+              class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-base"
+              placeholder={t.emailPlaceholder}
             />
           </div>
 
           <div class="space-y-2">
-            <label class="text-sm font-medium text-slate-700 dark:text-gray-300"
-              >Message</label
-            >
+            <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
+              {t.message}
+            </label>
             <textarea
               rows="4"
-              class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
-              placeholder="Tell us about your project..."></textarea>
+              class="w-full bg-white dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none text-base"
+              placeholder={t.messagePlaceholder}></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl px-6 py-4 transition-colors"
+            class="w-full bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl px-6 py-3 md:py-4 transition-colors text-base"
           >
-            Send Message
+            {t.submit}
           </button>
         </form>
       </div>
