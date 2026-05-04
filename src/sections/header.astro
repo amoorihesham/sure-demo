@@ -23,6 +23,8 @@ const navItems =
         { label: 'Clients', href: '#clients' },
         { label: 'Contact Us', href: '#contact' },
       ];
+
+const prefsLabel = lang === 'ar' ? 'المظهر واللغة' : 'Theme & Language';
 ---
 
 <header class="sticky top-0 bg-background/5 backdrop-blur-lg z-50">
@@ -64,34 +66,26 @@ const navItems =
       </nav>
     </div>
 
-    <!-- Mobile: toggles + hamburger -->
-    <div class="flex md:hidden items-center gap-2">
-      <div
-        class="flex items-center gap-1 p-1 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md"
-      >
-        <ModeToggle client:only />
-        <LocaleToggle client:only />
-      </div>
-
-      <button
-        id="mobile-menu-btn"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        class="w-11 h-11 flex flex-col justify-center items-center gap-[5px] rounded-full bg-slate-800/90 dark:bg-white/5 border border-slate-700/50 dark:border-white/10 shrink-0"
-      >
-        <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
-        <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
-        <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
-      </button>
-    </div>
+    <!-- Mobile: hamburger only -->
+    <button
+      id="mobile-menu-btn"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      class="md:hidden w-11 h-11 flex flex-col justify-center items-center gap-[5px] rounded-full bg-slate-800/90 dark:bg-white/5 border border-slate-700/50 dark:border-white/10 shrink-0"
+    >
+      <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
+      <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
+      <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
+    </button>
   </div>
 
-  <!-- Mobile menu panel (inside sticky header so it scrolls with it) -->
+  <!-- Mobile menu panel -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden bg-slate-900/98 dark:bg-[#050814]/98 backdrop-blur-xl border-t border-white/5 px-4 pb-4"
+    class="hidden md:hidden bg-slate-900/98 dark:bg-[#050814]/98 backdrop-blur-xl border-t border-white/5 px-4 pb-5"
   >
-    <nav class="flex flex-col">
+    <!-- Nav links -->
+    <nav class="flex flex-col mb-2">
       {
         navItems.map(item => (
           <a
@@ -103,6 +97,17 @@ const navItems =
         ))
       }
     </nav>
+
+    <!-- Theme & locale toggles -->
+    <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+      <span class="text-xs font-medium text-gray-500">{prefsLabel}</span>
+      <div
+        class="flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10"
+      >
+        <ModeToggle client:only />
+        <LocaleToggle client:only />
+      </div>
+    </div>
   </div>
 </header>
 
