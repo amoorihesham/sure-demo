@@ -1,116 +1,12 @@
 ---
-interface Props {
-  lang: 'en' | 'ar';
-}
-const { lang } = Astro.props;
-
-const t = {
-  en: {
-    badge: 'Solutions',
-    heading: 'Premium',
-    headingAccent: 'Digital Solutions',
-    subtitle:
-      'End-to-end solutions designed to scale, elevate your brand, and dominate the digital landscape.',
-    learnMore: 'Learn More',
-  },
-  ar: {
-    badge: 'حلولنا',
-    heading: 'حلول رقمية',
-    headingAccent: 'متميزة',
-    subtitle:
-      'حلول شاملة مصممة للتوسع، والارتقاء بعلامتك التجارية، والسيطرة على المشهد الرقمي.',
-    learnMore: 'اعرف المزيد',
-  },
-}[lang];
-
-const services = {
-  en: [
-    {
-      title: 'Custom Web Applications',
-      description:
-        'High-performance, scalable web platforms built with modern frontend frameworks ensuring lightning-fast load times and seamless UX.',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>`,
-    },
-    {
-      title: 'Mobile App Engineering',
-      description:
-        'Native and cross-platform mobile experiences that engage users and dominate App Store rankings with flawless performance.',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>`,
-    },
-    {
-      title: 'Enterprise Backend & APIs',
-      description:
-        'Robust, secure, and infinitely scalable microservices and APIs capable of handling millions of requests with zero downtime.',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg>`,
-    },
-    {
-      title: 'UI/UX Product Design',
-      description:
-        'Pixel-perfect, user-centric interfaces crafted in Figma that turn complex workflows into intuitive, beautiful experiences.',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.965 1.178c.09.544.5 1.002 1.002 1.002h2.5c.501 0 .913-.458 1.003-1.002zM14.502 14.28L4.053 5.46a2.25 2.25 0 01-.137-3.136c.216-.254.495-.444.808-.544a2.25 2.25 0 011.666.195l10.82 10.44m0 0l-1.396 1.488m1.396-1.488L20.44 20.44a2.25 2.25 0 01-3.181 3.182l-8.673-8.673m11.854-3.19l-3.182-3.181m3.182 3.181l1.488-1.396a2.25 2.25 0 000-3.182l-5.657-5.657a2.25 2.25 0 00-3.182 0l-1.396 1.487" /></svg>`,
-    },
-    {
-      title: 'Cloud & DevOps',
-      description:
-        'Automated CI/CD pipelines and cloud-native infrastructure setup on AWS and Google Cloud for maximum reliability.',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" /></svg>`,
-    },
-    {
-      title: 'AI & Machine Learning',
-      description:
-        'Intelligent AI integrations, LLM capabilities, and data-driven pipelines that give your software a powerful competitive edge.',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>`,
-    },
-  ],
-  ar: [
-    {
-      title: 'حلول الأعمال',
-      description:
-        'تقدم شور مجموعة من الحلول المالية التقنية لقطاع الأعمال والأفراد عبر مجموعة من منتجات وخدمات المدفوعات الإلكترونية',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>`,
-    },
-    {
-      title: 'تطوير تطبيقات الموبايل',
-      description:
-        'تطوير تطبيقات الموبايل Native و Cross-platform لضمان تجربة مستخدم مميزة وأداء عالي',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>`,
-    },
-    {
-      title: 'تطوير الواجهات الخلفية و APIs',
-      description:
-        'تطوير الواجهات الخلفية و APIs لضمان تجربة مستخدم مميزة وأداء عالي',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg>`,
-    },
-    {
-      title: 'تصميم واجهات المستخدم',
-      description: 'تصميم واجهات المستخدم لضمان تجربة مستخدم مميزة وأداء عالي',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.965 1.178c.09.544.5 1.002 1.002 1.002h2.5c.501 0 .913-.458 1.003-1.002zM14.502 14.28L4.053 5.46a2.25 2.25 0 01-.137-3.136c.216-.254.495-.444.808-.544a2.25 2.25 0 011.666.195l10.82 10.44m0 0l-1.396 1.488m1.396-1.488L20.44 20.44a2.25 2.25 0 01-3.181 3.182l-8.673-8.673m11.854-3.19l-3.182-3.181m3.182 3.181l1.488-1.396a2.25 2.25 0 000-3.182l-5.657-5.657a2.25 2.25 0 00-3.182 0l-1.396 1.487" /></svg>`,
-    },
-    {
-      title: 'الحوسبة السحابية و DevOps',
-      description:
-        'الحوسبة السحابية و DevOps لضمان تجربة مستخدم مميزة وأداء عالي',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" /></svg>`,
-    },
-    {
-      title: 'الذكاء الاصطناعي و تعلم الآلة',
-      description:
-        'الذكاء الاصطناعي و تعلم الآلة لضمان تجربة مستخدم مميزة وأداء عالي',
-      icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>`,
-    },
-  ],
-}[lang];
+import LucideIcon from '../components/LucideIcon';
+import { suits, content } from '@/content/services';
 ---
 
-<section
-  id="services"
-  class="w-full relative px-4 md:px-6 py-20 md:py-32 bg-transparent dark:bg-transparent z-10"
->
+<section id="services" class="w-full relative px-4 md:px-6 py-20 md:py-32 bg-transparent dark:bg-transparent z-10">
   <div class="max-w-360 mx-auto">
     <!-- Section header -->
-    <div
-      class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-14 md:mb-20 relative"
-    >
+    <div class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-14 md:mb-20 relative">
       <div
         class="absolute -top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none"
       >
@@ -120,54 +16,57 @@ const services = {
         class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
       >
         <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-        <span
-          class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
-          >{t.badge}</span
+        <span class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
+          >{content.badge}</span
         >
       </div>
 
       <h2
         class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 md:mb-6"
       >
-        {t.heading}
-        <span
-          class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400"
-        >
-          {t.headingAccent}
+        {content.heading}
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400">
+          {content.headingAccent}
         </span>
       </h2>
 
-      <p
-        class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400"
-      >
-        {t.subtitle}
+      <p class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400">
+        {content.subtitle}
       </p>
     </div>
 
-    <!-- Services grid -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 relative"
-    >
-      <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[80%] bg-blue-900/10 blur-[150px] rounded-full pointer-events-none z-[-1]"
-      >
-      </div>
-
+    <div class="space-y-6">
       {
-        services.map(service => (
-          <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden hover:shadow-brand/20 transition-all duration-300 h-[300px] flex flex-col">
+        suits.map(suit => (
+          <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden hover:shadow-brand/20 transition-all duration-300 flex flex-col">
             <div class="absolute -top-1/6 -right-2/6 w-[50%] h-[50%] bg-primary/10 blur-3xl  rounded-full pointer-events-none group-hover:bg-primary/20 transition-all duration-300" />
             <div class="absolute -bottom-1/6 -left-2/6 w-[50%] h-[50%] bg-brand/10 blur-3xl group-hover:bg-brand/20 transition-all duration-300  rounded-full pointer-events-none" />
             <div class="w-full py-6  flex items-center justify-center border-b border-brand/10">
-              <img
-                src="/dataStream.png"
-                alt="Clario DataStream logo"
-                class="w-28"
-              />
+              {suit.image && <img src={suit.image} alt="Clario DataStream logo" class="w-28" />}
+              {!suit.image && <LucideIcon name="Building2" size={28} />}
             </div>
-            <div class="flex-1" />
+            <div class="flex-1 grid grid-cols-3 px-6 py-3 gap-6">
+              {suit.apps.map(app => (
+                <div class="bg-primary/5 p-4 rounded-md">
+                  <div class="flex items-center gap-2">
+                    <div class={`${app.backgroundColor} rounded-lg p-2`}>
+                      <LucideIcon name={app.icon} size={18} />
+                    </div>
+                    <h4>{app.name}</h4>
+                  </div>
+                  <div class="mt-2 ">
+                    <p class="text-sm text-muted-foreground">{app.description}</p>
+                    <ul class="list-disc p-0 mt-2 text-xs space-y-1 px-6">
+                      {app.features.map(feat => (
+                        <li>{feat}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div class="w-full py-6  flex items-center justify-center border-t border-brand/10 text-primary">
-              NCA | DGA | SDAIA
+              {suit.compliance}
             </div>
           </div>
         ))

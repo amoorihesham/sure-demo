@@ -1,0 +1,20 @@
+export const content = {
+  badge: 'Contact Us',
+  heading: "Let's Build Something",
+  headingAccent: 'Extraordinary',
+  subtitle:
+    'Ready to transform your digital strategy? Get in touch with our team of engineers and designers to discuss your next big project.',
+  emailLabel: 'Email us',
+  email: 'hello@sure.sa',
+  locationLabel: 'Visit us',
+  location: 'Riyadh, Saudi Arabia',
+  firstName: 'First Name',
+  firstNamePlaceholder: 'John',
+  lastName: 'Last Name',
+  lastNamePlaceholder: 'Doe',
+  emailField: 'Work Email',
+  emailPlaceholder: 'john@company.com',
+  message: 'Message',
+  messagePlaceholder: 'Tell us about your project...',
+  submit: 'Send Message',
+};

@@ -1,38 +1,14 @@
 ---
-interface Props {
-  lang: 'en' | 'ar';
-}
-const { lang } = Astro.props;
-
-const t = {
-  en: {
-    legalLinks: {
-      privacy: 'Privacy Policy',
-      terms: 'Terms of Service',
-    },
-    copyright: 'Clario 360. All rights reserved.',
-  },
-  ar: {
-    legalLinks: {
-      privacy: 'سياسة الخصوصية',
-      terms: 'شروط الخدمة',
-    },
-    copyright: 'كلاريو 360. جميع الحقوق محفوظة.',
-  },
-}[lang];
-
-const year = new Date().getFullYear();
+import { content } from '@/content/footer';
 ---
 
 <footer
   class="w-full bg-linear-to-b from-primary/5 backdrop-blur-2xl to-transparent from-10% to-90% border-t border-brand/20 py-6"
 >
   <div class="max-w-360 mx-auto flex items-center justify-between">
-    <p
-      class="text-slate-500 dark:text-gray-400 text-xs md:text-sm text-center md:text-start"
-    >
-      &copy; {year}
-      {t.copyright}
+    <p class="text-slate-500 dark:text-gray-400 text-xs md:text-sm text-center md:text-start">
+      &copy; {content.year}
+      {content.copyright}
     </p>
     <div class="flex items-center gap-6 flex-row-reverse">
       <a href="/" class="block mb-4 hover:scale-105 transition-transform w-fit">
@@ -42,8 +18,8 @@ const year = new Date().getFullYear();
           class="w-20 md:w-24 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
         />
       </a>
-      <a href="#" class="text-sm underline">{t.legalLinks.terms}</a>
-      <a href="#" class="text-sm underline">{t.legalLinks.privacy}</a>
+      <a href="#" class="text-sm underline">{content.legalLinks.terms}</a>
+      <a href="#" class="text-sm underline">{content.legalLinks.privacy}</a>
     </div>
   </div>
 </footer>

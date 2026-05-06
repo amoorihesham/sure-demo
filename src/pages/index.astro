@@ -1,3 +1,16 @@
 ---
-return Astro.redirect('/en/', 301);
+import PageWrapper from '@/layouts/Layout.astro';
+import Header from '@/sections/header.astro';
+import Hero from '@/sections/hero.astro';
+import Services from '@/sections/services.astro';
+import Contact from '@/sections/contact.astro';
+import Footer from '@/sections/footer.astro';
 ---
+
+<PageWrapper title="Clario 360">
+  <Header />
+  <Hero />
+  <Services />
+  <Contact />
+  <Footer />
+</PageWrapper>
