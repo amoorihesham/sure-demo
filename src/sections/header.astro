@@ -28,7 +28,7 @@ const navItems = [
     <!-- Desktop: toggles + nav pill -->
 
     <nav
-      class="bg-primary/90 dark:bg-primary/40 dark:border-brand/60 border border-brand text-white dark:text-gray-300 flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+      class="hidden bg-primary/90 dark:bg-primary/40 dark:border-brand/60 border border-brand text-white dark:text-gray-300 md:flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
     >
       {
         navItems.map(item => (
@@ -48,19 +48,15 @@ const navItems = [
       id="mobile-menu-btn"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
-      class="md:hidden w-11 h-11 flex flex-col justify-center items-center gap-1.25 rounded-full bg-slate-800/90 dark:bg-white/5 border border-slate-700/50 dark:border-white/10 shrink-0"
+      class="md:hidden w-11 h-11 flex flex-col justify-center items-center gap-1.25 rounded-full bg-brand/90 shrink-0"
     >
-      <span class="menu-bar block w-4.5 h-.5 bg-white rounded-full origin-center transition-all duration-300"></span>
       <span class="menu-bar block w-4.5 h-0.5 bg-white rounded-full origin-center transition-all duration-300"></span>
       <span class="menu-bar block w-4.5 h-0.5 bg-white rounded-full origin-center transition-all duration-300"></span>
     </button>
   </div>
 
   <!-- Mobile menu panel -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden bg-slate-900/98 dark:bg-[#050814]/98 backdrop-blur-xl border-t border-white/5 px-4 pb-5"
-  >
+  <div id="mobile-menu" class="hidden px-4 bg-brand/80 backdrop-blur-xl">
     <!-- Nav links -->
     <nav class="flex flex-col mb-2">
       {
@@ -74,13 +70,6 @@ const navItems = [
         ))
       }
     </nav>
-
-    <!-- Theme & locale toggles -->
-    <div class="border-t border-white/10 pt-4 flex items-center justify-between">
-      <div class="flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10">
-        <ModeToggle client:only />
-      </div>
-    </div>
   </div>
 </header>
 
