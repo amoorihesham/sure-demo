@@ -64,11 +64,6 @@
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.14 0.01 196);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.14 0.01 196);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.14 0.01 196);
-  /* Dark teal — extracted from "CLARIO" logo text */
   --primary: oklch(0.47 0.08 196);
   --brand: oklch(0.47 0.08 196);
   --primary-foreground: oklch(0.985 0 0);
@@ -100,43 +95,6 @@
   --sidebar-accent-foreground: oklch(0.21 0.01 196);
   --sidebar-border: oklch(0.91 0.01 196);
   --sidebar-ring: oklch(0.47 0.08 196);
-}
-
-.dark {
-  --background: oklch(0.14 0.01 196);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.17 0.01 196);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.17 0.01 196);
-  --popover-foreground: oklch(0.985 0 0);
-  /* Slightly lighter teal in dark mode for better contrast */
-  --primary: oklch(0.6 0.1 196);
-  --brand: oklch(0.6 0.1 196);
-  --primary-foreground: oklch(0.985 0 0);
-  --lime: oklch(0.76 0.16 124);
-  --secondary: oklch(0.23 0.01 196);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.23 0.01 196);
-  --muted-foreground: oklch(0.71 0.01 196);
-  --accent: oklch(0.23 0.01 196);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.6 0.1 196);
-  --chart-1: oklch(0.6 0.1 196);
-  --chart-2: oklch(0.72 0.1 196);
-  --chart-3: oklch(0.47 0.08 196);
-  --chart-4: oklch(0.76 0.16 124);
-  --chart-5: oklch(0.88 0.12 124);
-  --sidebar: oklch(0.14 0.01 196);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.6 0.1 196);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.23 0.01 196);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.6 0.1 196);
 }
 
 @layer base {

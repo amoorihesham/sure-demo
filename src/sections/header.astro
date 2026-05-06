@@ -11,7 +11,7 @@ const navItems = [
 ---
 
 <header
-  class="sticky top-0 bg-background/5 backdrop-blur-lg z-50 border-b border-brand/40 mb-6 shadow-lg shadow-primary/10"
+  class="sticky top-0 bg-background/5 backdrop-blur-lg z-50 border-b border-brand/40 mb-6 shadow-lg shadow-primary/10 md:px-6 px-3"
 >
   <div class="flex justify-between items-center py-3 max-w-360 mx-auto">
     <!-- Logo -->
@@ -26,25 +26,22 @@ const navItems = [
     </div>
 
     <!-- Desktop: toggles + nav pill -->
-    <div class="hidden md:flex items-center justify-between w-[70%] xl:w-2/3">
-      <ModeToggle client:only />
 
-      <nav
-        class="bg-primary/90 dark:bg-primary/40 dark:border-brand/60 border border-brand text-white dark:text-gray-300 flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
-      >
-        {
-          navItems.map(item => (
-            <a
-              href={item.href}
-              class="text-sm font-medium hover:text-white/90 cursor-pointer transition-colors duration-300 relative group whitespace-nowrap"
-            >
-              {item.label}
-              <span class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-brand -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full" />
-            </a>
-          ))
-        }
-      </nav>
-    </div>
+    <nav
+      class="bg-primary/90 dark:bg-primary/40 dark:border-brand/60 border border-brand text-white dark:text-gray-300 flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+    >
+      {
+        navItems.map(item => (
+          <a
+            href={item.href}
+            class="text-sm font-medium hover:text-white/90 cursor-pointer transition-colors duration-300 relative group whitespace-nowrap"
+          >
+            {item.label}
+            <span class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-brand -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full" />
+          </a>
+        ))
+      }
+    </nav>
 
     <!-- Mobile: hamburger only -->
     <button

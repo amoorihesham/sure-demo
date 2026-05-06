@@ -2,10 +2,10 @@
 import { content } from '@/content/hero';
 ---
 
-<section class="w-full relative px-3 sm:px-4 md:px-6 pb-16 md:pb-20 overflow-hidden">
+<section class="w-full relative px-3 sm:px-4 md:px-6 pb-16 overflow-hidden">
   <!-- Hero Card Container -->
   <div
-    class="w-full max-w-360 mx-auto min-h-150 md:min-h-[85vh] bg-[#050814]/80 backdrop-blur-3xl rounded-2xl md:rounded-[2rem] relative overflow-hidden border border-white/5 shadow-2xl flex flex-col justify-center"
+    class="w-full max-w-360 mx-auto min-h-150 md:min-h-[85vh] bg-primary/10 dark:bg-[#050814]/80 backdrop-blur-3xl rounded-2xl md:rounded-[2rem] relative overflow-hidden border border-white/5 shadow-2xl flex flex-col justify-center"
   >
     <!-- Background glows -->
     <div
@@ -54,7 +54,7 @@ import { content } from '@/content/hero';
     >
       <!-- Badge pill -->
       <div
-        class="flex items-center gap-2 px-4 py-1.5 mb-6 md:mb-8 text-xs font-medium text-gray-300 transition-colors border rounded-full bg-white/5 border-white/10 hover:bg-white/10 backdrop-blur-md cursor-pointer max-w-[min(90vw,28rem)] overflow-hidden"
+        class="flex items-center gap-2 px-4 py-1.5 mb-6 md:mb-8 text-xs font-medium dark:text-gray-300 transition-colors border rounded-full bg-white/5 border-white/10 hover:bg-white/10 backdrop-blur-md cursor-pointer max-w-[min(90vw,28rem)] overflow-hidden"
       >
         <div
           class="w-4 h-4 bg-primary text-white rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
@@ -70,30 +70,21 @@ import { content } from '@/content/hero';
 
       <!-- Headline -->
       <h1
-        class="text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] leading-[1.15] font-bold tracking-tight text-white mb-4 md:mb-6"
+        class="text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] leading-[1.15] font-bold tracking-tight text-foreground dark:text-white mb-4 md:mb-6"
       >
         {content.headline}
-        <span class="text-white/60 text-shadow-sm"> {content.headlineAccent}</span>
+        <span class="text-brand dark:text-white/60 text-shadow-sm"> {content.headlineAccent}</span>
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-base sm:text-lg md:text-xl text-gray-400 mb-8 md:mb-10 max-w-2xl font-light">
+      <p class="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-400 mb-8 md:mb-10 max-w-2xl font-light">
         {content.subtitle}
       </p>
 
       <!-- CTA buttons -->
       <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
         <button
-          class="px-6 py-3 text-sm font-medium text-white transition-all duration-300 border rounded-full bg-black/40 border-white/10 hover:bg-white/10 hover:scale-105 backdrop-blur-md flex items-center gap-2"
-        >
-          {content.startBtn}
-          <svg class="w-4 h-4 shrink-0 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"
-            ></path></svg
-          >
-        </button>
-        <button
-          class="px-7 py-3 text-sm font-medium text-black transition-all duration-300 bg-white shadow-[0_0_20px_rgba(255,255,255,0.3)] rounded-full hover:bg-gray-100 hover:scale-105"
+          class="px-7 py-3 text-sm font-medium text-background transition-all duration-300 bg-primary shadow-[0_0_20px_rgba(255,255,255,0.3)] rounded-full hover:bg-primary/ hover:scale-105"
         >
           {content.servicesBtn}
         </button>
@@ -103,7 +94,7 @@ import { content } from '@/content/hero';
     <!-- Bottom-left: KSA clock — hidden on mobile -->
     <div class="absolute bottom-10 left-10 hidden md:flex items-center gap-3">
       <div
-        class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:-translate-y-1 transition-transform"
+        class="w-10 h-10 rounded-full bg-primary/10 text-foreground flex items-center justify-center hover:-translate-y-1 transition-transform"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
           ><path

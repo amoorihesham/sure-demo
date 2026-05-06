@@ -38,16 +38,14 @@ import { suits, content } from '@/content/services';
     <div class="space-y-6">
       {
         suits.map(suit => (
-          <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden hover:shadow-brand/20 transition-all duration-300 flex flex-col">
-            <div class="absolute -top-1/6 -right-2/6 w-[50%] h-[50%] bg-primary/10 blur-3xl  rounded-full pointer-events-none group-hover:bg-primary/20 transition-all duration-300" />
-            <div class="absolute -bottom-1/6 -left-2/6 w-[50%] h-[50%] bg-brand/10 blur-3xl group-hover:bg-brand/20 transition-all duration-300  rounded-full pointer-events-none" />
+          <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden transition-all duration-300 flex flex-col">
             <div class="w-full py-6  flex items-center justify-center border-b border-brand/10">
               {suit.image && <img src={suit.image} alt="Clario DataStream logo" class="w-28" />}
               {!suit.image && <LucideIcon name="Building2" size={28} />}
             </div>
-            <div class="flex-1 grid grid-cols-3 px-6 py-3 gap-6">
+            <div class="flex-1 grid grid-cols-1 lg:grid-cols-3 px-6 py-3 gap-6">
               {suit.apps.map(app => (
-                <div class="bg-primary/5 p-4 rounded-md">
+                <div class="bg-primary/20 p-4 rounded-md">
                   <div class="flex items-center gap-2">
                     <div class={`${app.backgroundColor} rounded-lg p-2`}>
                       <LucideIcon name={app.icon} size={18} />
