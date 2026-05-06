@@ -104,7 +104,7 @@ import { content } from '@/content/hero';
             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg
         >
       </div>
-      <span id="saudi-time" class="text-xs text-gray-400 tracking-wide">Loading...</span>
+      <span id="saudi-time" class="text-xs text-brand tracking-wide">Loading...</span>
     </div>
 
     <!-- Bottom-right: rotating caption — hidden on mobile -->
@@ -177,8 +177,8 @@ import { content } from '@/content/hero';
         for (var i = 0; i < dots.length; i++) {
           dots[i].className =
             i === currentIndex
-              ? 'w-5 h-1.5 bg-white rounded-full transition-colors cursor-pointer'
-              : 'w-5 h-1.5 bg-white/20 rounded-full transition-colors cursor-pointer hover:bg-white/40';
+              ? 'w-5 h-1.5 bg-primary rounded-full transition-colors cursor-pointer'
+              : 'w-5 h-1.5 bg-brand/20 rounded-full transition-colors cursor-pointer hover:bg-white/40';
         }
       }, 300);
     }, 2000);
