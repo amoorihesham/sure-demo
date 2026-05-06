@@ -6,7 +6,7 @@ const { lang } = Astro.props;
 
 const t = {
   en: {
-    badge: 'Services',
+    badge: 'Solutions',
     heading: 'Premium',
     headingAccent: 'Digital Solutions',
     subtitle:
@@ -14,7 +14,7 @@ const t = {
     learnMore: 'Learn More',
   },
   ar: {
-    badge: 'خدماتنا',
+    badge: 'حلولنا',
     heading: 'حلول رقمية',
     headingAccent: 'متميزة',
     subtitle:
@@ -83,8 +83,7 @@ const services = {
     },
     {
       title: 'تصميم واجهات المستخدم',
-      description:
-        'تصميم واجهات المستخدم لضمان تجربة مستخدم مميزة وأداء عالي',
+      description: 'تصميم واجهات المستخدم لضمان تجربة مستخدم مميزة وأداء عالي',
       icon: `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.965 1.178c.09.544.5 1.002 1.002 1.002h2.5c.501 0 .913-.458 1.003-1.002zM14.502 14.28L4.053 5.46a2.25 2.25 0 01-.137-3.136c.216-.254.495-.444.808-.544a2.25 2.25 0 011.666.195l10.82 10.44m0 0l-1.396 1.488m1.396-1.488L20.44 20.44a2.25 2.25 0 01-3.181 3.182l-8.673-8.673m11.854-3.19l-3.182-3.181m3.182 3.181l1.488-1.396a2.25 2.25 0 000-3.182l-5.657-5.657a2.25 2.25 0 00-3.182 0l-1.396 1.487" /></svg>`,
     },
     {
@@ -107,7 +106,7 @@ const services = {
   id="services"
   class="w-full relative px-4 md:px-6 py-20 md:py-32 bg-transparent dark:bg-transparent z-10"
 >
-  <div class="max-w-[1440px] mx-auto">
+  <div class="max-w-360 mx-auto">
     <!-- Section header -->
     <div
       class="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-14 md:mb-20 relative"
@@ -138,13 +137,17 @@ const services = {
         </span>
       </h2>
 
-      <p class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400">
+      <p
+        class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400"
+      >
         {t.subtitle}
       </p>
     </div>
 
     <!-- Services grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 relative">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 relative"
+    >
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[80%] bg-blue-900/10 blur-[150px] rounded-full pointer-events-none z-[-1]"
       >
@@ -152,35 +155,19 @@ const services = {
 
       {
         services.map(service => (
-          <div class="group relative bg-[#ffffff]/60 dark:bg-[#0a0f1d]/60 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-3xl p-6 md:p-8 hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-primary/40 dark:hover:border-primary/40 overflow-hidden flex flex-col h-full">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-[100px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-primary mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-500 shadow-sm shrink-0">
-              <Fragment set:html={service.icon} />
+          <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden hover:shadow-brand/20 transition-all duration-300 h-[300px] flex flex-col">
+            <div class="absolute -top-1/6 -right-2/6 w-[50%] h-[50%] bg-primary/10 blur-3xl  rounded-full pointer-events-none group-hover:bg-primary/20 transition-all duration-300" />
+            <div class="absolute -bottom-1/6 -left-2/6 w-[50%] h-[50%] bg-brand/10 blur-3xl group-hover:bg-brand/20 transition-all duration-300  rounded-full pointer-events-none" />
+            <div class="w-full py-6  flex items-center justify-center border-b border-brand/10">
+              <img
+                src="/dataStream.png"
+                alt="Clario DataStream logo"
+                class="w-28"
+              />
             </div>
-
-            <h3 class="text-lg md:text-xl font-bold text-slate-800 dark:text-white mb-3 md:mb-4">
-              {service.title}
-            </h3>
-            <p class="text-sm md:text-base text-slate-600 dark:text-gray-400 leading-relaxed mb-6 md:mb-8 grow">
-              {service.description}
-            </p>
-
-            <div class="flex items-center gap-2 text-sm font-semibold text-primary mt-auto">
-              <span>{t.learnMore}</span>
-              <svg
-                class="w-4 h-4 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 transition-transform duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+            <div class="flex-1" />
+            <div class="w-full py-6  flex items-center justify-center border-t border-brand/10 text-primary">
+              NCA | DGA | SDAIA
             </div>
           </div>
         ))

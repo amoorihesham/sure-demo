@@ -27,15 +27,20 @@ const navItems =
 const prefsLabel = lang === 'ar' ? 'المظهر واللغة' : 'Theme & Language';
 ---
 
-<header class="sticky top-0 bg-background/5 backdrop-blur-lg z-50">
-  <div class="flex justify-between items-center px-4 md:px-6 py-2">
+<header
+  class="sticky top-0 bg-background/5 backdrop-blur-lg z-50 border-b border-brand/40 mb-6 shadow-lg shadow-primary/10"
+>
+  <div class="flex justify-between items-center py-3 max-w-360 mx-auto">
     <!-- Logo -->
     <div class="shrink-0">
-      <a href="/" class="block hover:scale-105 transition-transform duration-300">
+      <a
+        href="/"
+        class="block hover:scale-105 transition-transform duration-300"
+      >
         <img
-          src="/logo.svg"
+          src="/logo.png"
           alt="logo"
-          class="w-20 md:w-24 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+          class="w-24 md:w-36 drop-shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
         />
       </a>
     </div>
@@ -43,23 +48,23 @@ const prefsLabel = lang === 'ar' ? 'المظهر واللغة' : 'Theme & Langua
     <!-- Desktop: toggles + nav pill -->
     <div class="hidden md:flex items-center justify-between w-[70%] xl:w-2/3">
       <div
-        class="flex items-center gap-2 p-1.5 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md shadow-sm dark:shadow-md transition-all hover:bg-slate-300/70 dark:hover:bg-white/10"
+        class="flex items-center gap-2 p-1.5 rounded-full bg-primary/60 dark:bg-primary/5 border border-brand dark:border-brand/10 backdrop-blur-md shadow-sm dark:shadow-md transition-all hover:bg-primary/70 dark:hover:bg-primary/10"
       >
         <ModeToggle client:only />
         <LocaleToggle client:only />
       </div>
 
       <nav
-        class="bg-slate-800/90 dark:bg-[#0a0f1d]/80 border border-slate-700/50 dark:border-white/10 text-white dark:text-gray-300 flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+        class="bg-primary/90 dark:bg-primary/40 dark:border-brand/60 border border-brand text-white dark:text-gray-300 flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
       >
         {
           navItems.map(item => (
             <a
               href={item.href}
-              class="text-sm font-medium hover:text-primary cursor-pointer transition-colors duration-300 relative group whitespace-nowrap"
+              class="text-sm font-medium hover:text-white/90 cursor-pointer transition-colors duration-300 relative group whitespace-nowrap"
             >
               {item.label}
-              <span class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-primary -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full" />
+              <span class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-brand -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full" />
             </a>
           ))
         }
@@ -71,11 +76,17 @@ const prefsLabel = lang === 'ar' ? 'المظهر واللغة' : 'Theme & Langua
       id="mobile-menu-btn"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
-      class="md:hidden w-11 h-11 flex flex-col justify-center items-center gap-[5px] rounded-full bg-slate-800/90 dark:bg-white/5 border border-slate-700/50 dark:border-white/10 shrink-0"
+      class="md:hidden w-11 h-11 flex flex-col justify-center items-center gap-1.25 rounded-full bg-slate-800/90 dark:bg-white/5 border border-slate-700/50 dark:border-white/10 shrink-0"
     >
-      <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
-      <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
-      <span class="menu-bar block w-[18px] h-[2px] bg-white rounded-full origin-center transition-all duration-300"></span>
+      <span
+        class="menu-bar block w-4.5 h-.5 bg-white rounded-full origin-center transition-all duration-300"
+      ></span>
+      <span
+        class="menu-bar block w-4.5 h-0.5 bg-white rounded-full origin-center transition-all duration-300"
+      ></span>
+      <span
+        class="menu-bar block w-4.5 h-0.5 bg-white rounded-full origin-center transition-all duration-300"
+      ></span>
     </button>
   </div>
 
@@ -99,7 +110,9 @@ const prefsLabel = lang === 'ar' ? 'المظهر واللغة' : 'Theme & Langua
     </nav>
 
     <!-- Theme & locale toggles -->
-    <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+    <div
+      class="border-t border-white/10 pt-4 flex items-center justify-between"
+    >
       <span class="text-xs font-medium text-gray-500">{prefsLabel}</span>
       <div
         class="flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10"
@@ -120,16 +133,16 @@ const prefsLabel = lang === 'ar' ? 'المظهر واللغة' : 'Theme & Langua
     const bars = btn.querySelectorAll<HTMLElement>('.menu-bar');
 
     function openMenu() {
-      menu.classList.remove('hidden');
-      btn.setAttribute('aria-expanded', 'true');
+      menu?.classList.remove('hidden');
+      btn?.setAttribute('aria-expanded', 'true');
       bars[0].style.transform = 'translateY(7px) rotate(45deg)';
       bars[1].style.opacity = '0';
       bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
     }
 
     function closeMenu() {
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
+      menu?.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
       bars[0].style.transform = '';
       bars[1].style.opacity = '1';
       bars[2].style.transform = '';

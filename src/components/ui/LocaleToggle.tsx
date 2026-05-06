@@ -12,14 +12,10 @@ export function LocaleToggle() {
     <Button
       variant="outline"
       size="icon"
+      className="border-brand/10"
       onClick={() => (window.location.href = url)}
-      className={buttonVariants({
-        variant: 'outline',
-        size: 'icon',
-        className: 'text-white',
-      })}
     >
-      <Globe className="size-4" />
+      <Globe className="size-4 text-black dark:text-white" />
     </Button>
   );
 }

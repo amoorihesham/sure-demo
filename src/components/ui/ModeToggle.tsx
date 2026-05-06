@@ -24,6 +24,7 @@ export function ModeToggle() {
     <Button
       variant="outline"
       size="icon"
+      className="border-brand/10"
       onClick={() => setThemeState(theme === 'dark' ? 'theme-light' : 'dark')}
     >
       <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
