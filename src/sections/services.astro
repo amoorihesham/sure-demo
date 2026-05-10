@@ -25,7 +25,7 @@ import { suits, content } from '@/content/services';
         class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 md:mb-6"
       >
         {content.heading}
-        <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-400">
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-brand">
           {content.headingAccent}
         </span>
       </h2>
@@ -35,11 +35,11 @@ import { suits, content } from '@/content/services';
       </p>
     </div>
 
-    <div class="space-y-6">
+    <div class="space-y-8">
       {
         suits.map(suit => (
-          <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden transition-all duration-300 flex flex-col">
-            <div class="w-full py-6  flex items-center justify-center bg-primary text-background">
+          <div class="bg-transparent relative backdrop-blur-3xl shadow-2xl shadow-brand/30 rounded-md border border-brand/40  group overflow-hidden transition-all duration-300 flex flex-col">
+            <div class="w-full py-6  flex items-center justify-center bg-linear-to-tr from-primary to-brand text-background">
               {suit.image && <img src={suit.image} alt="Clario DataStream logo" class="w-28" />}
               {!suit.image && <LucideIcon name="Building2" size={28} />}
             </div>
@@ -67,7 +67,7 @@ import { suits, content } from '@/content/services';
                 ))}
               </div>
             </div>
-            <div class="w-full py-6  flex items-center justify-center bg-primary text-background">
+            <div class="w-full py-6  flex items-center justify-center bg-linear-to-tr from-primary to-brand text-background">
               {suit.compliance}
             </div>
           </div>
