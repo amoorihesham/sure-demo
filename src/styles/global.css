@@ -64,8 +64,8 @@
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.14 0.01 196);
-  --primary: oklch(0.47 0.08 196);
-  --brand: oklch(0.47 0.08 196);
+  --primary: oklch(46.478% 0.07895 192.468);
+  --brand: oklch(70.253% 0.11589 196.324);
   --primary-foreground: oklch(0.985 0 0);
   /* Lime green — extracted from "360" logo text */
   --lime: oklch(0.7 0.16 124);

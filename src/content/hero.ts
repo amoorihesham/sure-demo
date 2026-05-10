@@ -1,13 +1,12 @@
 export const content = {
-  badge: 'Welcome to Clario360',
-  headline: 'We are',
+  headline: 'Welcome to ',
   headlineAccent: 'Clario360',
   subtitle:
-    'We are Sure, a premium software house dedicated to transforming your innovative ideas into powerful, scalable digital products.',
-  startBtn: 'Start Project',
-  servicesBtn: 'Our Services',
+    'Clario360 architects premium, AI-powered digital products, delivering scalable software solutions and cutting-edge automation to transform innovative ideas into high-performance realities.',
+
+  servicesBtn: 'Explore Our Solutions',
   scrollLabel: 'Scroll',
-  timePrefix: 'KSA Time • ',
+  timePrefix: 'Riyadh • ',
   timeLocale: 'en-US',
   captions: ['AI & Data Integration', 'Secure By Design'],
   partnersLabel: 'Our Success Partners',

@@ -39,31 +39,35 @@ import { suits, content } from '@/content/services';
       {
         suits.map(suit => (
           <div class="bg-transparent relative backdrop-blur-3xl shadow-lg shadow-brand/10 rounded-md border border-brand/20  group overflow-hidden transition-all duration-300 flex flex-col">
-            <div class="w-full py-6  flex items-center justify-center border-b border-brand/10">
+            <div class="w-full py-6  flex items-center justify-center bg-primary text-background">
               {suit.image && <img src={suit.image} alt="Clario DataStream logo" class="w-28" />}
               {!suit.image && <LucideIcon name="Building2" size={28} />}
             </div>
-            <div class="flex-1 grid grid-cols-1 lg:grid-cols-3 px-6 py-3 gap-6">
-              {suit.apps.map(app => (
-                <div class="bg-primary/20 p-4 rounded-md">
-                  <div class="flex items-center gap-2">
-                    <div class={`${app.backgroundColor} rounded-lg p-2`}>
-                      <LucideIcon name={app.icon} size={18} />
+            <div class="flex-1 px-6 py-6 space-y-6">
+              <p class="text-center">{suit.description}</p>
+
+              <div class=" grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {suit.apps.map(app => (
+                  <div class="bg-background p-4 rounded-md border border-brand/40">
+                    <div class="flex items-center gap-2">
+                      <div class={`${app.backgroundColor} rounded-lg p-2`}>
+                        <LucideIcon name={app.icon} size={18} className="text-white" />
+                      </div>
+                      <h4>{app.name}</h4>
                     </div>
-                    <h4>{app.name}</h4>
+                    <div class="mt-2 ">
+                      <p class="text-sm text-muted-foreground">{app.description}</p>
+                      <ul class="list-none p-0 mt-2 text-xs space-y-1 px-6">
+                        {app.features.map(feat => (
+                          <li>{feat}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div class="mt-2 ">
-                    <p class="text-sm text-muted-foreground">{app.description}</p>
-                    <ul class="list-disc p-0 mt-2 text-xs space-y-1 px-6">
-                      {app.features.map(feat => (
-                        <li>{feat}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-            <div class="w-full py-6  flex items-center justify-center border-t border-brand/10 text-primary">
+            <div class="w-full py-6  flex items-center justify-center bg-primary text-background">
               {suit.compliance}
             </div>
           </div>
