@@ -10,7 +10,7 @@ import ContactForm from '@/components/Contact.astro';
     <div class="absolute top-0 right-1/4 w-72 h-72 bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]">
     </div>
 
-    <div class="flex items-stretch justify-between gap-6 md:gap-10">
+    <div class="flex items-stretch flex-col md:flex-row justify-between gap-10 md:gap-14">
       <!-- Text & contact info -->
       <div class="flex flex-col justify-between items-start flex-1/2">
         <div>
@@ -32,7 +32,7 @@ import ContactForm from '@/components/Contact.astro';
             </span>
           </h2>
 
-          <p class="text-base md:text-lg text-slate-600 dark:text-gray-400 mb-8 md:mb-10">
+          <p class="text-base md:text-lg text-slate-600 max-w-2xl mb-8 md:mb-10">
             {content.subtitle}
           </p>
         </div>
