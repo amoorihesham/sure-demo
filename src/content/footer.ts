@@ -1,8 +1,8 @@
 export const content = {
   legalLinks: {
-    privacy: 'Privacy Policy',
-    terms: 'Terms of Service',
+    privacy: { title: 'Privacy Policy', href: '/privacy' },
+    terms: { title: 'Terms of Service', href: '/terms' },
   },
-  copyright: 'Clario 360. All rights reserved.',
+  copyright: 'All rights reserved - ',
   year: new Date().getFullYear(),
 };

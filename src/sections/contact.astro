@@ -1,6 +1,7 @@
 ---
 import LucideIcon from '@/components/LucideIcon';
 import { content } from '@/content/contact';
+import ContactForm from '@/components/Contact.astro';
 ---
 
 <section id="contact" class="w-full relative px-4 md:px-6 py-20 md:py-32 overflow-hidden z-10">
@@ -9,32 +10,34 @@ import { content } from '@/content/contact';
     <div class="absolute top-0 right-1/4 w-72 h-72 bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]">
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-24 items-center">
+    <div class="flex items-stretch justify-between gap-6 md:gap-10">
       <!-- Text & contact info -->
-      <div>
-        <div
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
-        >
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
-            >{content.badge}</span
+      <div class="flex flex-col justify-between items-start flex-1/2">
+        <div>
+          <div
+            class="w-fit inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 border border-slate-300/50 backdrop-blur-md mb-6"
           >
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
+              >{content.badge}</span
+            >
+          </div>
+
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 md:mb-6"
+          >
+            {content.heading}
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-brand/50">
+              {content.headingAccent}
+            </span>
+          </h2>
+
+          <p class="text-base md:text-lg text-slate-600 dark:text-gray-400 mb-8 md:mb-10">
+            {content.subtitle}
+          </p>
         </div>
 
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 md:mb-6"
-        >
-          {content.heading}
-          <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-brand/50">
-            {content.headingAccent}
-          </span>
-        </h2>
-
-        <p class="text-base md:text-lg text-slate-600 dark:text-gray-400 mb-8 md:mb-10">
-          {content.subtitle}
-        </p>
-
-        <div class="space-y-5 md:space-y-6">
+        <div class="space-y-5 md:space-y-6 mt-auto">
           <!-- Email -->
           <div class="flex items-center gap-4">
             <div
@@ -71,49 +74,7 @@ import { content } from '@/content/contact';
         </div>
       </div>
 
-      <!-- Contact form -->
-      <div class="bg-background backdrop-blur-xl border border-brand/60 rounded-3xl p-4 md:p-6 shadow-xl relative">
-        <form class="space-y-4" onsubmit="evencontent.preventDefault();">
-          <div class="space-y-3">
-            <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
-              {content.firstName}
-            </label>
-            <input
-              type="text"
-              class="w-full bg-white border border-brand/40 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-base"
-              placeholder={content.firstNamePlaceholder}
-            />
-          </div>
-
-          <div class="space-y-3">
-            <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
-              {content.emailField}
-            </label>
-            <input
-              type="email"
-              class="w-full bg-white border border-brand/40 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-base"
-              placeholder={content.emailPlaceholder}
-            />
-          </div>
-
-          <div class="space-y-3">
-            <label class="text-sm font-medium text-slate-700 dark:text-gray-300">
-              {content.message}
-            </label>
-            <textarea
-              rows="4"
-              class="w-full bg-white border border-brand/40 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none text-base"
-              placeholder={content.messagePlaceholder}></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full bg-linear-to-tr from-primary to-brand/40 font-semibold rounded-xl px-6 py-3 md:py-4 transition-colors text-background cursor-pointer text-base hover:from-primary/90 hover:to-brand/30"
-          >
-            {content.submit}
-          </button>
-        </form>
-      </div>
+      <ContactForm />
     </div>
   </div>
 </section>

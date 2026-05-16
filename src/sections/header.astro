@@ -1,13 +1,5 @@
 ---
-import { ModeToggle } from '@/components/ui/ModeToggle';
 
-const navItems = [
-  { label: 'Home', href: '#' },
-  { label: 'About Us', href: '#' },
-  { label: 'Services', href: '#services' },
-  { label: 'Clients', href: '#clients' },
-  { label: 'Contact Us', href: '#contact' },
-];
 ---
 
 <header
@@ -28,19 +20,9 @@ const navItems = [
     <!-- Desktop: toggles + nav pill -->
 
     <nav
+      id="desktop-nav"
       class="hidden bg-primary/90 dark:bg-primary/40 dark:border-brand/60 border border-brand text-white dark:text-gray-300 md:flex items-center gap-6 xl:gap-8 rounded-full px-6 xl:px-8 py-3 backdrop-blur-xl shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
     >
-      {
-        navItems.map(item => (
-          <a
-            href={item.href}
-            class="text-sm font-medium hover:text-white/90 cursor-pointer transition-colors duration-300 relative group whitespace-nowrap"
-          >
-            {item.label}
-            <span class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-brand -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full" />
-          </a>
-        ))
-      }
     </nav>
 
     <!-- Mobile: hamburger only -->
@@ -58,18 +40,7 @@ const navItems = [
   <!-- Mobile menu panel -->
   <div id="mobile-menu" class="hidden px-4 bg-brand/80 backdrop-blur-xl">
     <!-- Nav links -->
-    <nav class="flex flex-col mb-2">
-      {
-        navItems.map(item => (
-          <a
-            href={item.href}
-            class="mobile-nav-link text-sm font-medium text-gray-300 hover:text-primary py-3.5 border-b border-white/5 last:border-0 transition-colors duration-200"
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
+    <nav class="flex flex-col mb-2"></nav>
   </div>
 </header>
 
@@ -77,6 +48,7 @@ const navItems = [
   function initMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
+
     if (!btn || !menu) return;
 
     const bars = btn.querySelectorAll<HTMLElement>('.menu-bar');
@@ -86,7 +58,6 @@ const navItems = [
       btn?.setAttribute('aria-expanded', 'true');
       bars[0].style.transform = 'translateY(7px) rotate(45deg)';
       bars[1].style.opacity = '0';
-      bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
     }
 
     function closeMenu() {
@@ -94,7 +65,6 @@ const navItems = [
       btn?.setAttribute('aria-expanded', 'false');
       bars[0].style.transform = '';
       bars[1].style.opacity = '1';
-      bars[2].style.transform = '';
     }
 
     btn.addEventListener('click', () => {
@@ -112,4 +82,52 @@ const navItems = [
   } else {
     initMobileMenu();
   }
+
+  function renderNavbar() {
+    const desktopNav = document.getElementById('desktop-nav');
+    const mobileNav = document.querySelector('#mobile-menu nav');
+
+    const isPrivacyTermsPages = window.location.pathname === '/privacy' || window.location.pathname === '/terms';
+    const navItems = [
+      { label: 'Home', href: isPrivacyTermsPages ? '/' : '#' },
+      { label: 'About Us', href: isPrivacyTermsPages ? '/#about' : '#about' },
+      { label: 'Solutions', href: isPrivacyTermsPages ? '/#solutions' : '#solutions' },
+      { label: 'Contact Us', href: isPrivacyTermsPages ? '/#contact' : '#contact' },
+    ];
+
+    const desktopLinks = navItems
+      .map(
+        item =>
+          `<a
+            href=${item.href}
+            class="text-sm font-medium hover:text-white/90 cursor-pointer transition-colors duration-300 relative group whitespace-nowrap"
+          >
+            ${item.label}
+            <span class="absolute -bottom-1.5 left-1/2 w-0 h-0.5 bg-brand -translate-x-1/2 transition-all duration-300 group-hover:w-full rounded-full" />
+          </a>`
+      )
+      .join('');
+
+    const mobileLinks = navItems
+      .map(
+        item => `
+         <a
+            href=${item.href}
+            class="mobile-nav-link text-sm font-medium text-white hover:text-white/80 py-3.5 border-b border-white/5 last:border-0 transition-colors duration-200"
+          >
+            ${item.label}
+          </a>
+      `
+      )
+      .join('');
+
+    if (desktopNav) {
+      desktopNav.innerHTML = desktopLinks;
+    }
+
+    if (mobileNav) {
+      mobileNav.innerHTML = mobileLinks;
+    }
+  }
+  renderNavbar();
 </script>

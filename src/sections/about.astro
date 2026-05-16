@@ -1,0 +1,44 @@
+---
+import LucideIcon from '../components/LucideIcon';
+import { content } from '@/content/about';
+---
+
+<section id="about" class="w-full relative px-4 md:px-6 py-6 bg-transparent dark:bg-transparent z-10">
+  <div class="max-w-360 mx-auto">
+    <!-- Section header -->
+    <div class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto mb-14 md:mb-20 relative">
+      <div
+        class="absolute -top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/10 backdrop-blur-md mb-6"
+      >
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-xs font-semibold tracking-widest text-slate-700 dark:text-gray-300 uppercase"
+          >{content.badge}</span
+        >
+      </div>
+
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-4 md:mb-6"
+      >
+        {content.heading}
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-primary to-brand">
+          {content.headingAccent}
+        </span>
+      </h2>
+
+      <div class="mt-2 space-y-4 w-full">
+        <p class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400">
+          {content.subtitle}
+          <span class="font-semibold text-black">{content.highlighted_1}</span>
+        </p>
+        <p class="text-base md:text-lg lg:text-xl text-slate-600 dark:text-gray-400">
+          <span class="text-black font-semibold">{content.highlighted_2}</span>{content.description}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

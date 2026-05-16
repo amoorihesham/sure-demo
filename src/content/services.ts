@@ -17,6 +17,14 @@ export const suits: SuitType[] = [
     image: '/dataStream.png',
     apps: [
       {
+        name: 'Clario DWH',
+        description: 'Enterprise Data Lake, Warehouse & Governed Analytics',
+        icon: 'LayoutGrid',
+        features: ['PostgreSQL-native lakehouse', 'ML schema derivation', '≥100K rows/sec'],
+        backgroundColor: 'bg-linear-to-tr from-yellow-500 to-yellow-700 from-30% to-80%',
+      },
+
+      {
         name: 'Clario DR',
         description: 'Disaster Recovery Management & Verification Platform',
         icon: 'Database',
@@ -28,6 +36,13 @@ export const suits: SuitType[] = [
           'On-demand & scheduled',
         ],
         backgroundColor: 'bg-linear-to-tr from-primary to-primary from-30% to-80%',
+      },
+      {
+        name: 'Clario Migration',
+        description: 'Enterprise Database Migration Platform',
+        icon: 'HardDrive',
+        features: ['Homogeneous full-load & CDC', 'Flat files: CSV/JSON/Parquet', 'Cloud: S3/Azure Blob/GCS'],
+        backgroundColor: 'bg-linear-to-tr from-red-500 to-red-700 from-30% to-80%',
       },
       {
         name: 'Clario Sync',
@@ -54,20 +69,6 @@ export const suits: SuitType[] = [
           'Backup compliance trends',
         ],
         backgroundColor: 'bg-linear-to-tr from-orange-500 to-orange-700 from-30% to-80%',
-      },
-      {
-        name: 'Clario Migration',
-        description: 'Enterprise Database Migration Platform',
-        icon: 'HardDrive',
-        features: ['Homogeneous full-load & CDC', 'Flat files: CSV/JSON/Parquet', 'Cloud: S3/Azure Blob/GCS'],
-        backgroundColor: 'bg-linear-to-tr from-red-500 to-red-700 from-30% to-80%',
-      },
-      {
-        name: 'Clario DWH',
-        description: 'Enterprise Data Lake, Warehouse & Governed Analytics',
-        icon: 'LayoutGrid',
-        features: ['PostgreSQL-native lakehouse', 'ML schema derivation', '≥100K rows/sec'],
-        backgroundColor: 'bg-linear-to-tr from-yellow-500 to-yellow-700 from-30% to-80%',
       },
     ],
   },
