@@ -3,7 +3,10 @@ import LucideIcon from '@/components/LucideIcon';
 import { content } from '@/content/why';
 ---
 
-<section id="why" class="w-full relative px-4 md:px-6 py-10 overflow-hidden z-10">
+<section
+  id="why"
+  class="w-full relative px-4 md:px-6 py-14 overflow-hidden z-10 bg-linear-to-t from-brand/10 to-transparent"
+>
   <div class="max-w-360 mx-auto relative">
     <!-- Background decor -->
     <div class="absolute top-0 right-1/4 w-72 h-72 bg-primary/10 blur-[120px] rounded-full pointer-events-none z-[-1]">
@@ -17,10 +20,10 @@ import { content } from '@/content/why';
             {content.headingAccent}
           </span>
         </h2>
-        <p>{content.description}</p>
+        <p class="max-w-xs font-semibold mx-auto">{content.description}<br />{content.descriptionLine2}</p>
       </div>
       <div class="mt-6">
-        <p class="max-w-xl mb-4 mx-auto">{content.subDescription}</p>
+        <p class="max-w-md mb-4 mx-auto">{content.subDescription}</p>
         <ul class="list-disc px-8 flex flex-col items-center">{content.points.map(p => <li>{p}</li>)}</ul>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 
 import react from '@astrojs/react';
 
@@ -10,6 +11,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
   integrations: [react()],
+  adapter: cloudflare(),
 });
